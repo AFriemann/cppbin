@@ -66,15 +66,19 @@ INCLUDE_DIRECTORIES(SYSTEM "${MAINFOLDER}/include")
 # ADD_LIBRARY(xdrfile ${xdrfile_SRCS})
 #
 # # Boost
-# SET(Boost_USE_MULTITHREADED ON)
+SET(Boost_USE_MULTITHREADED ON)
+
+find_package(Boost 1.36.0 REQUIRED COMPONENTS filesystem)
+include_directories(${Boost_INCLUDE_DIRS})
+
 # SET(Boost_LIBRARY_DIR "${MAINFOLDER}/thirdparty/boost_1_59_0/libs")
 # FILE(GLOB_RECURSE Boost_SYSTEM_SRCS "${Boost_LIBRARY_DIR}/system/src/*.cpp")
 # FILE(GLOB_RECURSE Boost_FILESYSTEM_SRCS "${Boost_LIBRARY_DIR}/filesystem/src/*.cpp")
 # FILE(GLOB_RECURSE Boost_PROGRAM_OPTIONS_SRCS "${Boost_LIBRARY_DIR}/program_options/src/*.cpp")
 # FILE(GLOB_RECURSE Boost_TEST_SRCS "${Boost_LIBRARY_DIR}/test/src/*.cpp")
-#
-# ADD_LIBRARY(boost_system ${Boost_SYSTEM_SRCS})
-#
+
+#ADD_LIBRARY(boost_system ${Boost_SYSTEM_SRCS})
+
 # ADD_LIBRARY(boost_filesystem ${Boost_FILESYSTEM_SRCS})
 # TARGET_LINK_LIBRARIES(boost_filesystem boost_system)
 #
@@ -86,7 +90,7 @@ INCLUDE_DIRECTORIES(SYSTEM "${MAINFOLDER}/include")
 #
 # # collect libraries
 #
-# SET(thirdparty_LIBRARIES ${Boost_LIBRARIES} xdrfile)
+SET(thirdparty_LIBRARIES ${Boost_LIBRARIES})
 # SET(thirdparty_TEST_LIBRARIES ${thirdparty_LIBRARIES} boost_test)
 
 ################################################################################
