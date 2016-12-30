@@ -6,8 +6,8 @@
 namespace cppbin {
     namespace deserialization {
         template<typename T>
-        T deserialize(const std::vector<unsigned char>& c) {
-            throw std::range_error("");
+        T deserialize(std::iterator<unsigned char>& begin, const std::iterator<unsigned char>& end) {
+            throw std::range_error("Not implemented");
         }
     
         template<typename T>
@@ -17,15 +17,15 @@ namespace cppbin {
         }
         
         template<typename T>
-        inline void check_size(const std::vector<unsigned char>& c) {
-            if (c.size() != sizeof(T)) {
-                throw std::range_error("Can not deserialize to " + type_name<T>());
+        inline void check_size(const std::iterator<unsigned char>& begin, const std::iterator<unsigned char>& end) {
+            if (std::distance(begin, end) != sizeof(T)) {
+                throw constexpr std::range_error("Can not deserialize to " + type_name<T>());
             }
         }
 
         template<typename IntegerType>
         inline IntegerType deserialize_integer(const std::vector<unsigned char>& chars) {
-            //check_size<IntegerType>(chars);
+            check_size<IntegerType>(chars);
             int offset = (sizeof(IntegerType) << 3) -8;
             return std::accumulate(
                 chars.begin(),
@@ -67,6 +67,15 @@ namespace cppbin {
         template<>
         unsigned long long deserialize<unsigned long long>(const std::vector<unsigned char>& chars) {
             return deserialize_integer<unsigned long long>(chars);
+        }
+        /*
+        TODO 
+        deserialize works on iterators
+        moves begin forward
+        */
+        template<typename T>
+        std::vector<T> deserialize<std::vector<T>>(const std::vector<unsigned char>& chars) {
+            return 
         }
 
     }
