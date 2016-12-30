@@ -1,4 +1,5 @@
 FILE (GLOB_RECURSE project_SRCS *.cpp *.cxx *.cc *.C *.c *.h *.hpp)
+
 SET (project_LIBS ${thirdparty_LIBRARIES})
 SET (project_BIN ${PROJECT_NAME})
 

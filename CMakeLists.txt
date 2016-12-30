@@ -77,6 +77,15 @@ include_directories(${Boost_INCLUDE_DIRS})
 # FILE(GLOB_RECURSE Boost_PROGRAM_OPTIONS_SRCS "${Boost_LIBRARY_DIR}/program_options/src/*.cpp")
 # FILE(GLOB_RECURSE Boost_TEST_SRCS "${Boost_LIBRARY_DIR}/test/src/*.cpp")
 
+set(catch_DIR "${MAINFOLDER}/thirdparty/catch-1.5.9")
+set(catch_HEADERS "${catch_DIR}/catch.hpp")
+include_directories(${catch_DIR})
+
+#add_library (catch ${catch_HEADERS})
+
+#find_package(catch 1.5.9 REQUIRED COMPONENTS filesystem)
+
+
 #ADD_LIBRARY(boost_system ${Boost_SYSTEM_SRCS})
 
 # ADD_LIBRARY(boost_filesystem ${Boost_FILESYSTEM_SRCS})
@@ -87,11 +96,12 @@ include_directories(${Boost_INCLUDE_DIRS})
 # ADD_LIBRARY(boost_test ${Boost_TEST_SRCS})
 #
 # SET(Boost_LIBRARIES boost_filesystem boost_program_options boost_system)
+
 #
 # # collect libraries
 #
 SET(thirdparty_LIBRARIES ${Boost_LIBRARIES})
-# SET(thirdparty_TEST_LIBRARIES ${thirdparty_LIBRARIES} boost_test)
+SET(thirdparty_TEST_LIBRARIES ${thirdparty_LIBRARIES})
 
 ################################################################################
 # Configure Files
@@ -120,7 +130,7 @@ ENDFOREACH (CONFIGINPUT ${CONFIGINPUTS})
 ################################################################################
 
 ADD_SUBDIRECTORY(src)
-#ADD_SUBDIRECTORY(test)
+ADD_SUBDIRECTORY(test)
 
 ################################################################################
 # Add Install Targets
