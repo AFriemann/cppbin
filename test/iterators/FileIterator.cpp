@@ -5,6 +5,8 @@
 
 #include "catch.hpp"
 
+#include <cppbin/iterators/FileIterator.hpp>
+
 SCENARIO( "foobar" ) {
     // TODO
     GIVEN( "foo foo bar" ) {

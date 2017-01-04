@@ -17,7 +17,7 @@ SET (APPLICATION_VERSION_STRING "${APPLICATION_VERSION_MAJOR}.${APPLICATION_VERS
 #
 # Debugging Options
 #
-SET (CMAKE_VERBOSE_MAKEFILE 0) # Use 1 for debugging, 0 for release
+SET (CMAKE_VERBOSE_MAKEFILE 1) # Use 1 for debugging, 0 for release
 
 #
 # Project Output Paths
@@ -44,7 +44,7 @@ if (OPTIMIZE)
     SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -fmerge-all-constants")
 endif()
 
-################################################################################
+#############################################################################
 # Project Search Paths
 ################################################################################
 
@@ -53,7 +53,7 @@ LIST (APPEND CMAKE_PREFIX_PATH "${MAINFOLDER}/tools")
 LIST (APPEND CMAKE_PREFIX_PATH "${MAINFOLDER}/thirdparty")
 SET (CMAKE_MODULE_PATH "${MAINFOLDER}/tools/share/cmake")
 
-INCLUDE_DIRECTORIES(SYSTEM "${MAINFOLDER}/include")
+INCLUDE_DIRECTORIES("${MAINFOLDER}/include")
 
 ################################################################################
 # Thirdparty libraries
@@ -69,7 +69,7 @@ INCLUDE_DIRECTORIES(SYSTEM "${MAINFOLDER}/include")
 SET(Boost_USE_MULTITHREADED ON)
 
 find_package(Boost 1.36.0 REQUIRED COMPONENTS filesystem)
-include_directories(${Boost_INCLUDE_DIRS})
+include_directories(SYSTEM ${Boost_INCLUDE_DIRS})
 
 # SET(Boost_LIBRARY_DIR "${MAINFOLDER}/thirdparty/boost_1_59_0/libs")
 # FILE(GLOB_RECURSE Boost_SYSTEM_SRCS "${Boost_LIBRARY_DIR}/system/src/*.cpp")
@@ -79,7 +79,7 @@ include_directories(${Boost_INCLUDE_DIRS})
 
 set(catch_DIR "${MAINFOLDER}/thirdparty/catch-1.5.9")
 set(catch_HEADERS "${catch_DIR}/catch.hpp")
-include_directories(${catch_DIR})
+include_directories(SYSTEM ${catch_DIR})
 
 #add_library (catch ${catch_HEADERS})
 

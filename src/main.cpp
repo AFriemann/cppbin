@@ -5,7 +5,7 @@
 
 #include "boost/filesystem.hpp"
 
-#include "iterators/FileIterator.hpp"
+#include <cppbin/iterators/FileIterator.hpp>
 
 using namespace cppbin;
 
